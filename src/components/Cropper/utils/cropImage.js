@@ -61,19 +61,24 @@ export default async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
  );
 
  // As Base64 string
- // return canvas.toDataURL("image/jpeg");
- return canvas;
+ return canvas.toDataURL("image/jpeg");
+
+ /// :: Realizar o download da imagem
+ //return canvas;
 }
 
-export const generateDownload = async (imageSrc, crop) => {
+export const generateDownload = async (imageSrc, crop, rotation, callback) => {
  if (!crop || !imageSrc) {
      return;
  }
 
- const canvas = await getCroppedImg(imageSrc, crop);
+ const canvas = await getCroppedImg(imageSrc, crop, rotation);
 
+ callback(canvas);
  debugger
- canvas.toBlob(
+
+ /// :: Realizar o download da imagem
+ /*canvas.toBlob(
      (blob) => {
          const previewUrl = window.URL.createObjectURL(blob);
 
@@ -88,5 +93,6 @@ export const generateDownload = async (imageSrc, crop) => {
      },
      "image/jpeg",
      0.66
- );
+ );*/
+
 };

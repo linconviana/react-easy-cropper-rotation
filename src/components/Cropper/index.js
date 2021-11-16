@@ -13,6 +13,7 @@ import { generateDownload } from './utils/cropImage'
 /// https://www.npmjs.com/package/react-easy-crop
 /// :: https://ricardo-ch.github.io/react-easy-crop/
 //https://codesandbox.io/s/react-easy-crop-v69ly910ql?from-embed
+
 const Croppie = () => {
 
 
@@ -38,9 +39,16 @@ const Croppie = () => {
         }
     }
 
+    const [resultCrop, setResultCrop] = useState(null);
     const onDownload = () => {
+        ///generateDownload(image, croppedArea, rotation);
+        generateDownload(image, croppedArea, rotation, updateImgCrop);
+        
+    }
 
-        generateDownload(image, croppedArea);
+    const updateImgCrop = (image) => {
+        debugger
+        setResultCrop(image);
     }
 
     const changeRotation = (event) => {
@@ -78,6 +86,7 @@ const Croppie = () => {
                         onCropComplete={onCropComplete}
                         onZoomChange={setZoom}
                         rotation={rotation}
+                        showGrid={false}
                         />
                     </div>
 
@@ -107,6 +116,10 @@ const Croppie = () => {
                 <button type="button" onClick={changeRotation} name="180" style={{marginLeft:"30px"}} >180º graus</button>
                 <button type="button" onClick={changeRotation} name="270" style={{marginLeft:"30px"}} >270º graus</button>
             </div>
+
+            {resultCrop &&
+                <img src={resultCrop} alt="imagem cropper" />
+            }
 
         </div>
         </>

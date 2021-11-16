@@ -33,3 +33,9 @@
     align-items: center;
     justify-content: center;
 }
+
+.reactEasyCrop_CropArea{
+    width: 506px;
+    height: 506px;
+    border-radius: 50%;
+}
